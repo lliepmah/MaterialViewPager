@@ -55,7 +55,7 @@ public class MaterialViewPager extends FrameLayout implements ViewPager.OnPageCh
     /**
      * the layout containing the viewpager, can be replaced to add your own implementation of viewpager
      */
-    private ViewGroup viewpagerContainer;
+//    private ViewGroup viewpagerContainer;
 
     /**
      * the layout containing logo
@@ -134,20 +134,20 @@ public class MaterialViewPager extends FrameLayout implements ViewPager.OnPageCh
 
         headerBackgroundContainer = (ViewGroup) findViewById(R.id.headerBackgroundContainer);
         pagerTitleStripContainer = (ViewGroup) findViewById(R.id.pagerTitleStripContainer);
-        viewpagerContainer = (ViewGroup) findViewById(R.id.viewpager_layout);
+//        viewpagerContainer = (ViewGroup) findViewById(R.id.viewpager_layout);
 //        logoContainer = (ViewGroup) findViewById(R.id.logoContainer);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         if (settings.disableToolbar)
             mToolbar.setVisibility(INVISIBLE);
 
-        { //replace the viewpager ?
-            int viewPagerLayoutId = settings.viewpagerId;
-            if (viewPagerLayoutId != -1) {
-                viewpagerContainer.removeAllViews();
-                viewpagerContainer.addView(LayoutInflater.from(getContext()).inflate(viewPagerLayoutId, viewpagerContainer, false));
-            }
-        }
+//        { //replace the viewpager ?
+//            int viewPagerLayoutId = settings.viewpagerId;
+//            if (viewPagerLayoutId != -1) {
+//                viewpagerContainer.removeAllViews();
+//                viewpagerContainer.addView(LayoutInflater.from(getContext()).inflate(viewPagerLayoutId, viewpagerContainer, false));
+//            }
+//        }
 
         mViewPager = (ViewPager) findViewById(R.id.materialviewpager_viewpager);
 

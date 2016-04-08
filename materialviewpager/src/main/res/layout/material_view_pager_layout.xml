@@ -25,14 +25,7 @@
 
     </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/viewpager_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <include layout="@layout/material_view_pager_viewpager"/>
-
-    </FrameLayout>
+    <include layout="@layout/material_view_pager_viewpager"/>
 
     <RelativeLayout
         android:id="@+id/toolbar_layout"
