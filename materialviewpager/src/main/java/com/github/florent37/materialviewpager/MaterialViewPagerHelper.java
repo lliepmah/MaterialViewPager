@@ -17,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by florentchampigny on 25/04/15.
- *
+ * <p>
  * MaterialViewPagerHelper attach a MaterialViewPagerAnimator to an activity
  * You can use MaterialViewPagerHelper to retrieve MaterialViewPagerAnimator from context
  * Or register a scrollable to the current activity's MaterialViewPagerAnimator
@@ -33,12 +33,14 @@ public class MaterialViewPagerHelper {
      * @param animator the current MaterialViewPagerAnimator
      */
     public static void register(Context context, MaterialViewPagerAnimator animator) {
-        hashMap.put(context, animator);
+        if (context != null) {
+            hashMap.put(context.hashCode(), animator);
+        }
     }
 
     public static void unregister(Context context) {
         if (context != null)
-            hashMap.remove(context);
+            hashMap.remove(context.hashCode());
     }
 
     /**
@@ -51,8 +53,8 @@ public class MaterialViewPagerHelper {
      * @param onScrollListener use it if you want to get a callback of the RecyclerView
      */
     public static void registerRecyclerView(Activity activity, RecyclerView recyclerView, RecyclerView.OnScrollListener onScrollListener) {
-        if (activity != null && hashMap.containsKey(activity)) {
-            MaterialViewPagerAnimator animator = hashMap.get(activity);
+        if (activity != null && hashMap.containsKey(activity.hashCode())) {
+            MaterialViewPagerAnimator animator = hashMap.get(activity.hashCode());
             if (animator != null) {
                 animator.registerRecyclerView(recyclerView, onScrollListener);
             }
@@ -69,8 +71,8 @@ public class MaterialViewPagerHelper {
      * @param observableScrollViewCallbacks use it if you want to get a callback of the RecyclerView
      */
     public static void registerWebView(Activity activity, ObservableWebView webView, ObservableScrollViewCallbacks observableScrollViewCallbacks) {
-        if (activity != null && hashMap.containsKey(activity)) {
-            MaterialViewPagerAnimator animator = hashMap.get(activity);
+        if (activity != null && hashMap.containsKey(activity.hashCode())) {
+            MaterialViewPagerAnimator animator = hashMap.get(activity.hashCode());
             if (animator != null) {
                 animator.registerWebView(webView, observableScrollViewCallbacks);
             }
@@ -87,8 +89,8 @@ public class MaterialViewPagerHelper {
      * @param observableScrollViewCallbacks use it if you want to get a callback of the RecyclerView
      */
     public static void registerScrollView(Activity activity, ObservableScrollView mScrollView, ObservableScrollViewCallbacks observableScrollViewCallbacks) {
-        if (activity != null && hashMap.containsKey(activity)) {
-            MaterialViewPagerAnimator animator = hashMap.get(activity);
+        if (activity != null && hashMap.containsKey(activity.hashCode())) {
+            MaterialViewPagerAnimator animator = hashMap.get(activity.hashCode());
             if (animator != null) {
                 animator.registerScrollView(mScrollView, observableScrollViewCallbacks);
             }
@@ -102,13 +104,13 @@ public class MaterialViewPagerHelper {
      * @return current MaterialViewPagerAnimator
      */
     public static MaterialViewPagerAnimator getAnimator(Context context) {
-        return hashMap.get(context);
+        return hashMap.get(context != null ? context.hashCode() : 0);
     }
 
-    private static void webViewLoadJS(WebView webView, String js){
+    private static void webViewLoadJS(WebView webView, String js) {
         if (android.os.Build.VERSION.SDK_INT >= 19) {
             webView.evaluateJavascript(js, null);
-        }else{
+        } else {
             webView.loadUrl("javascript: " + js);
         }
     }
@@ -149,7 +151,7 @@ public class MaterialViewPagerHelper {
 
                 {
                     final String js = "document.body.style.backround-color= white";
-                    webViewLoadJS(webView,js);
+                    webViewLoadJS(webView, js);
                 }
 
                 if (withAnimation)
