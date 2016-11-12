@@ -1,7 +1,5 @@
 package com.github.florent37.materialviewpager.header;
 
-import android.util.Log;
-
 import com.github.florent37.materialviewpager.Utils;
 
 import java.util.Collection;
@@ -17,7 +15,6 @@ public abstract class HeadersKeeper extends Utils {
 
     public HeadersKeeper(Collection<HeaderDesign> headerDesigns) {
         mHeaders = new LinkedList<>(headerDesigns);
-        Log.d(HeadersKeeper.class.getName(), "-> HeadersKeeper ->");
     }
 
     public abstract int getColorWithOffset(int position, float offset);
