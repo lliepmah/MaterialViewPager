@@ -8,7 +8,7 @@ buildscript {
         maven { url 'https://jitpack.io' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.1'
+        classpath 'com.android.tools.build:gradle:2.2.3'
         classpath 'com.github.dcendents:android-maven-plugin:1.2'
         classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.1"
         classpath 'com.github.JakeWharton:sdk-manager-plugin:0ce4cdf08009d79223850a59959d9d6e774d0f77'
